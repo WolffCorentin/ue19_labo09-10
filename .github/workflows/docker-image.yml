@@ -46,7 +46,6 @@ jobs:
           image-ref: 'ghcr.io/wolffcorentin/ue19_labo09-10:main'
           format: 'table'
           exit-code: '1'
-          ignore-unfixed: true
           severity: 'CRITICAL,HIGH'
       
       - name: Build and push Docker image
@@ -56,10 +55,3 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-
-  build:
-    runs-on: ubuntu-latest
-    steps:
-    - uses: actions/checkout@v3
-    - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
